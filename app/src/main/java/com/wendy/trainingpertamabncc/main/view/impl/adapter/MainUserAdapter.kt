@@ -2,10 +2,8 @@ package com.wendy.trainingpertamabncc.main.view.impl.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.wendy.trainingpertamabncc.R
+import com.wendy.trainingpertamabncc.databinding.ItemsUserMainBinding
 
 class MainUserAdapter(
     private var items: MutableList<String>,
@@ -15,8 +13,9 @@ class MainUserAdapter(
     Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.items_user_main, viewGroup, false)
-        return UserViewHolder(view, listener)
+        val layoutInflater = LayoutInflater.from(viewGroup.context)
+        val binding = ItemsUserMainBinding.inflate(layoutInflater, viewGroup, false)
+        return UserViewHolder(binding, listener)
     }
 
     override fun getItemCount(): Int {
@@ -34,17 +33,17 @@ class MainUserAdapter(
     }
 
     inner class UserViewHolder(
-        private val view: View,
+        private val binding: ItemsUserMainBinding,
         private val listener: (index: String) -> Unit
-    ) : RecyclerView.ViewHolder(view) {
-
-        private var textView: TextView? = null
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: String) {
-            textView = view.findViewById(R.id.tv_user_name)
-            textView?.text = data
-            textView?.setOnClickListener {
-                listener.invoke(data)
+            binding.executePendingBindings()
+            binding.tvUserName.apply {
+                text = data
+                setOnClickListener {
+                    listener.invoke(data)
+                }
             }
         }
     }
