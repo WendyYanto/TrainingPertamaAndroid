@@ -23,12 +23,18 @@ class MainActivity : AppCompatActivity(), MainView {
         presenter = MainPresenterImpl(this)
 
         view.btnNextActivity.setOnClickListener {
-            presenter?.addUserData(view.editTextData.text.toString())
+            val user = view.editTextData.text.toString()
+            if (user.isBlank()) {
+                Toast.makeText(this, "Data Cannot Be Blank", Toast.LENGTH_LONG).show()
+            } else {
+                presenter?.addUserData(user)
+            }
         }
 
-        mainUserAdapter = MainUserAdapter(presenter?.getAllItems() as MutableList<String>) {
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
+        mainUserAdapter = MainUserAdapter(presenter?.getAllItems() as MutableList<String>) { name ->
+            presenter?.deleteUser(name)
         }
+
         view.rvUser.layoutManager = LinearLayoutManager(this)
         view.rvUser.adapter = mainUserAdapter
     }

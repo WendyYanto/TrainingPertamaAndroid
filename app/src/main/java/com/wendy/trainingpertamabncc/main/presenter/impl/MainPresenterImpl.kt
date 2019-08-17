@@ -15,4 +15,9 @@ class MainPresenterImpl(private var view: MainView) : MainPresenter {
     override fun getAllItems(): List<String> {
         return this.items
     }
+
+    override fun deleteUser(name: String) {
+        items.remove(name)
+        view.populateList(items)
+    }
 }
