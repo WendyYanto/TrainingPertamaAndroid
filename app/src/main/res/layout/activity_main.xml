@@ -21,6 +21,11 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"/>
 
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
         <View android:layout_width="match_parent"
               android:layout_height="0dp"
               android:layout_weight="1"/>
@@ -29,7 +34,7 @@
                 android:id="@+id/btn_next_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Next Activity"/>
+                android:text="Show Toast"/>
 
     </LinearLayout>
 </layout>
