@@ -8,9 +8,7 @@ import com.wendy.trainingpertamabncc.databinding.ItemsUserMainBinding
 class MainUserAdapter(
     private var items: MutableList<String>,
     private val listener: (index: String) -> Unit
-) :
-    RecyclerView.
-    Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): RecyclerView.ViewHolder {
         val layoutInflater = LayoutInflater.from(viewGroup.context)
@@ -34,7 +32,7 @@ class MainUserAdapter(
 
     inner class UserViewHolder(
         private val binding: ItemsUserMainBinding,
-        private val listener: (index: String) -> Unit
+        private val listener: (word: String) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: String) {
